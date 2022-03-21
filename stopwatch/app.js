@@ -1,38 +1,51 @@
-const clock = document.getElementById("clock")
-const startButton = document.getElementById("startButton")
-const stopButton = document.getElementById("stopButton")
-const resetButton = document.getElementById("resetButton")
+window.onload = function () {
 
-let action
-let msec = 0
-// timeStart() 실행 시 0.1초 씩 카운트 up 진행.
-// function timeHandler(action) {
-//   if(action === true) {
-//     msec = msec + 1
-//     console.log(msec)
-//     clock.innerText = `${msec}`
-//       if(msec === 100) {
-//       msec = msec = 0 
-//       }
-//   } else if (action === false) {
-//     clearInterval()
-//   }
-// }
+  const sec = document.getElementById("min")
+  const msec = document.getElementById("sec")
+  const startButton = document.getElementById("startButton")
+  const stopButton = document.getElementById("stopButton")
+  const resetButton = document.getElementById("resetButton")
+  
+  let itv = null
+  let msecTime = 0
+  let secTime = 0
+  
+  function start() {
+    clearInterval(itv)
+    itv = setInterval(timeHandler, 10)
+  };
 
-function startTime() {
-  action = true
-  setInterval(timeHandler(action), 100)
+  function stop() {
+    clearInterval(itv)
+  };
+
+  function reset() {
+    clearInterval(itv)
+    msecTime = 0
+    secTime = 0
+    sec.innerText = "00"
+    msec.innerText = "00"
+  };
+
+  function timeHandler() {
+    msecTime++
+
+    if(msecTime < 10){
+      msec.innerText = `0${msecTime}`
+    } else if (10 <= msecTime && msecTime < 100) {
+      msec.innerText = msecTime
+    } else {
+      msecTime = 0
+      secTime++
+      if (secTime <= 9) {
+        min.innerText = `0${secTime}`
+      } else {
+        min.innerText = secTime
+      };
+    };
+  };
+  
+  startButton.addEventListener("click", start)
+  stopButton.addEventListener("click", stop)
+  resetButton.addEventListener("click", reset)
 };
-
-startButton.addEventListener("click", startTime)
-
-// timeStop() 실행 시 timeStart() 이벤트 정지.
-
-function stopTime() {
-  action = false
-  timeHandler(action)
-};
-
-stopButton.addEventListener("click", stopTime)
-
-// timeReset() 실행 시 clock = 00:00 으로 변경.
