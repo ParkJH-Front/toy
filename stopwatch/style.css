@@ -1,0 +1,45 @@
+body {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
+  background-color: rgb(108, 72, 175);
+}
+
+/* div.main{
+  color: white;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+div.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+}
+
+p.clock {
+  display: flex;
+  justify-content: center;
+  color: white
+}
+
+spen {
+  font-size: x-large;
+}
+
+div.controlBox {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 10px;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  font-size: large;
+}
